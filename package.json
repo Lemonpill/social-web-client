@@ -1,7 +1,7 @@
 {
-  "name": "social-client-3",
+  "name": "social-web-client-3",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
