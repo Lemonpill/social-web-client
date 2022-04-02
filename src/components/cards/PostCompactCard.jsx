@@ -1,7 +1,7 @@
 import PostMenu from '../menus/PostMenu';
 import MoreVert from "@mui/icons-material/MoreVert";
 import axios from 'axios';
-import { Card, Typography, Box, Link, IconButton } from '@mui/material';
+import { Card, Typography, Box, Link, IconButton, Avatar } from '@mui/material';
 import React, { useCallback } from "react";
 import { useModalContext } from '../../context/useModalContext';
 import EditPostModal from "../modals/EditPostModal";
@@ -29,8 +29,23 @@ const headerStyle = {
 
 const metaStyle = {
   display: "flex",
-  flexDirection: "column"
+  alignItems: "center",
+  gap: 1
 }
+
+const ownerStyle = {fontWeight: "medium", lineHeight: "120%"};
+
+const dateStyle = {color: "text.secondary", lineHeight: "120%"};
+
+const metaBoxStyle = {display: "flex", flexDirection: "column", gap: 0};
+
+const actionsIconStyle = {color: "text.secondary"};
+
+const contentStyle = {mb: 2};
+
+const readLinkStyle = {fontWeight: 500, color: "text.primary"};
+
+const commentsCountStyle = {color: "text.secondary"};
 
 export default function PostCompactCard({post}) {
   // Debug
@@ -113,25 +128,32 @@ export default function PostCompactCard({post}) {
       <Card sx={cardStyle}>
         <Box sx={headerStyle}>
           <Box sx={metaStyle}>
-            <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
-              {post.owner.display_name}
-            </Typography>
-            <Typography component="small" variant="body2" sx={{color: "text.secondary"}}>
-              {post.created}
-            </Typography>
+            <Avatar sx={{backgroundColor: post.owner.color}}>
+              <Typography>
+                {post.owner.display_name[0]}
+              </Typography>
+            </Avatar>
+            <Box sx={metaBoxStyle}>
+              <Typography component="p" variant="body1" sx={ownerStyle}>
+                {post.owner.display_name}
+              </Typography>
+              <Typography component="small" variant="body2" sx={dateStyle}>
+                {post.created}
+              </Typography>
+            </Box>
           </Box>
           <IconButton onClick={e => {
             handleOpenMenu(e)
             selectPost(post.id)
             }}>
-            <MoreVert fontSize="small" sx={{color: "text.secondary"}}/>
+            <MoreVert fontSize="small" sx={actionsIconStyle}/>
           </IconButton>
         </Box>
         <Box>
           <Typography
           variant="body1"
           component="p"
-          sx={{mb: 2}}
+          sx={contentStyle}
           >
             {content.substring(0, 160)}
             {content.length >= 160 && "..."}
@@ -139,14 +161,14 @@ export default function PostCompactCard({post}) {
           <Link
             href={"/posts/" + post.id}
             underline="hover"
-            sx={{fontWeight: 500, color: "text.primary"}}
+            sx={readLinkStyle}
           >read post</Link>
         </Box>
         <Box component="footer">
           <Typography
             variant="body2"
             component="p"
-            sx={{color: "text.secondary"}}
+            sx={commentsCountStyle}
           >{post.comments} Comments
           </Typography>
         </Box>

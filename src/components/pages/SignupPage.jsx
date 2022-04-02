@@ -9,6 +9,8 @@ import Copyright from '../Copyright';
 import {API} from '../../API';
 import { useNavigate } from 'react-router';
 
+const containerStyle = {pt: 2};
+
 const cardStyle = {
   display: 'flex',
   flexDirection: 'column',
@@ -24,6 +26,10 @@ const titleStyle = {
   opacity: .9
 };
 
+const formStyle = { mt: 3 };
+
+const inputIconStyle = {opacity: .8};
+
 const disclaimerStyle = {textAlign: "center", fontSize: "80%"};
 
 const loginLinkStyle = {
@@ -33,6 +39,8 @@ const loginLinkStyle = {
 };
 
 const buttonStyle = { mt: 3, mb: .5, py: 1.5};
+
+const copyrightStyle = { mt: 5 };
 
 export default function SignUpPage() {
 
@@ -105,7 +113,7 @@ export default function SignUpPage() {
       <Container
         component="main"
         maxWidth="xs"
-        sx={{pt: 2}}
+        sx={containerStyle}
       >
         <Card
           sx={cardStyle}
@@ -116,7 +124,7 @@ export default function SignUpPage() {
           <Typography component="h1" variant="h5" sx={titleStyle}>
             Sign up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={formStyle}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -134,7 +142,7 @@ export default function SignUpPage() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <AccountCircleOutlined sx={{opacity: .8}}/>
+                        <AccountCircleOutlined sx={inputIconStyle}/>
                       </InputAdornment>
                     ),
                   }}
@@ -154,7 +162,7 @@ export default function SignUpPage() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <EmailOutlined sx={{opacity: .8}}/>
+                        <EmailOutlined sx={inputIconStyle}/>
                       </InputAdornment>
                     ),
                   }}
@@ -175,7 +183,7 @@ export default function SignUpPage() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <LockOutlined sx={{opacity: .8}}/>
+                        <LockOutlined sx={inputIconStyle}/>
                       </InputAdornment>
                     ),
                   }}
@@ -195,7 +203,7 @@ export default function SignUpPage() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <LockOutlined sx={{opacity: .8}}/>
+                        <LockOutlined sx={inputIconStyle}/>
                       </InputAdornment>
                     ),
                   }}
@@ -218,7 +226,7 @@ export default function SignUpPage() {
             </Link>
           </Box>
         </Card>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright sx={copyrightStyle} />
       </Container>
   );
 }

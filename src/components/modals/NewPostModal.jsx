@@ -26,9 +26,14 @@ const cardStyle = {
 
 const headerStyle = {display: "flex", alignItems: "center"};
 
+const titleStyle = {fontWeight: "medium"};
+
 const metaStyle = {display: "flex", flexDirection: "column"};
 
+const ownerStyle = {color: "text.secondary"};
+
 const footerStyle = {display: "flex", gap: 2};
+
 
 const NewPostModal = ({onAddPost}) => {
     
@@ -98,10 +103,10 @@ const NewPostModal = ({onAddPost}) => {
           <Card sx={cardStyle}>
             <Box sx={headerStyle}>
               <Box sx={metaStyle}>
-                <Typography component="h1" variant="h6" sx={{fontWeight: "medium"}}>
+                <Typography component="h1" variant="h6" sx={titleStyle}>
                   Create a post
                 </Typography>
-                <Typography component="small" variant="body2" sx={{color: "text.secondary"}}>
+                <Typography component="small" variant="body2" sx={ownerStyle}>
                   as {user.display_name}
                 </Typography>
               </Box>

@@ -55,11 +55,9 @@ export default function Navbar() {
               Web
               </Typography>
           </Typography>
-          <Box sx={{display: "flex"}}>
             <IconButton onClick={handleOpenMenu}>
               <MenuOutlined/>
             </IconButton>
-          </Box>
         </Toolbar>
       </Container>
     </AppBar>

@@ -31,6 +31,14 @@ const metaStyle = {
   flexDirection: "column"
 }
 
+const ownerStyle = {fontWeight: "medium"};
+
+const dateStyle = {color: "text.secondary"};
+
+const actionsIconStyle = {color: "text.secondary"};
+
+const contentStyle = {mb: 1};
+
 export default function PostFullCard({post, content}) {
   // Debug
   // console.log("Render PostFullCard")
@@ -97,22 +105,22 @@ export default function PostFullCard({post, content}) {
       />
       <Box sx={headerStyle}>
         <Box sx={metaStyle}>
-          <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
+          <Typography component="p" variant="body1" sx={ownerStyle}>
             {post.owner.display_name}
           </Typography>
-          <Typography component="small" variant="body2" sx={{color: "text.secondary"}}>
+          <Typography component="small" variant="body2" sx={dateStyle}>
             {post.created}
           </Typography>
         </Box>
         <IconButton onClick={handleOpenMenu}>
-          <MoreVert fontSize="small" sx={{color: "text.secondary"}}/>
+          <MoreVert fontSize="small" sx={actionsIconStyle}/>
         </IconButton>
       </Box>
       <Box>
         <Typography
          variant="body1"
          component="p"
-         sx={{mb: 1}}
+         sx={contentStyle}
         >
           {content}
         </Typography>

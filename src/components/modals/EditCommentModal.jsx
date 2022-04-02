@@ -28,7 +28,12 @@ const headerStyle = {display: "flex", alignItems: "center"}
 
 const metaStyle = {display: "flex", gap: 1, alignItems: "center"}
 
-const footerStyle = {display: "flex", gap: 2}
+const ownerStyle = {fontWeight: "medium"};
+
+const dateStyle = {color: "text.secondary"};
+
+const footerStyle = {display: "flex", gap: 2};
+
 
 export default function EditCommentModal({comment, currContent, setCurrContent}) {
 
@@ -110,10 +115,10 @@ export default function EditCommentModal({comment, currContent, setCurrContent})
           <Card sx={cardStyle}>
             <Box sx={headerStyle}>
               <Box sx={metaStyle}>
-                <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
+                <Typography component="p" variant="body1" sx={ownerStyle}>
                   {comment.owner.display_name}
                 </Typography>
-                <Typography component="small" variant="body2" sx={{color: "text.secondary"}}>
+                <Typography component="small" variant="body2" sx={dateStyle}>
                   {comment.created}
                 </Typography>
               </Box>

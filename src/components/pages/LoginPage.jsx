@@ -19,10 +19,18 @@ const cardStyle = {
 
 const avatarStyle = { m: 1.2, p: 3.4, bgcolor: 'primary.main' };
 
+const topIconStyle = {color: "#fff"};
+
 const titleStyle = {
   fontWeight: 400,
   opacity: .9
 };
+
+const containerStyle = {pt: 2};
+
+const formStyle = { mt: 3 };
+
+const inputIconStyle = {opacity: .8};
 
 const buttonStyle = { mt: 3, mb: .5, py: 1.5 };
 
@@ -31,6 +39,8 @@ const signupLinkStyle = {
   display: "block",
   mt: 2
 };
+
+const copyRightStyle = { mt: 5 };
 
 export default function LoginPage() {
 
@@ -97,16 +107,16 @@ export default function LoginPage() {
       <Container
         component="main"
         maxWidth="xs"
-        sx={{pt: 2}}
+        sx={containerStyle}
       >
         <Card sx={cardStyle}>
           <Avatar sx={avatarStyle}>
-            <AccountCircleOutlined fontSize="large" sx={{color: "#fff"}}/>
+            <AccountCircleOutlined fontSize="large" sx={topIconStyle}/>
           </Avatar>
           <Typography component="h1" variant="h5" sx={titleStyle}>
             Log In
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={formStyle}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -124,7 +134,7 @@ export default function LoginPage() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <EmailOutlined sx={{opacity: .8}}/>
+                        <EmailOutlined sx={inputIconStyle}/>
                       </InputAdornment>
                     ),
                   }}
@@ -145,7 +155,7 @@ export default function LoginPage() {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <LockOutlined sx={{opacity: .8}}/>
+                        <LockOutlined sx={inputIconStyle}/>
                       </InputAdornment>
                     ),
                   }}
@@ -165,7 +175,7 @@ export default function LoginPage() {
             </Link>
           </Box>
         </Card>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright sx={copyRightStyle} />
       </Container>
   );
 }

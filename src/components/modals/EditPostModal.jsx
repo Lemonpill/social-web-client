@@ -24,11 +24,15 @@ const cardStyle = {
   p: 2
 };
 
-const headerStyle = {display: "flex", alignItems: "center"}
+const headerStyle = {display: "flex", alignItems: "center"};
 
-const metaStyle = {display: "flex", flexDirection: "column"}
+const metaStyle = {display: "flex", flexDirection: "column"};
 
-const footerStyle = {display: "flex", gap: 2}
+const ownerStyle = {fontWeight: "medium"};
+
+const dateStyle = {color: "text.secondary"};
+
+const footerStyle = {display: "flex", gap: 2};
 
 export default function EditPostModal({post, currContent, setCurrContent}) {
 
@@ -110,10 +114,10 @@ export default function EditPostModal({post, currContent, setCurrContent}) {
           <Card sx={cardStyle}>
             <Box sx={headerStyle}>
               <Box sx={metaStyle}>
-                <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
+                <Typography component="p" variant="body1" sx={ownerStyle}>
                   {post.owner.display_name}
                 </Typography>
-                <Typography component="small" variant="body2" sx={{color: "text.secondary"}}>
+                <Typography component="small" variant="body2" sx={dateStyle}>
                   {post.created}
                 </Typography>
               </Box>

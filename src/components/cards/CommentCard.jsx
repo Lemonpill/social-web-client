@@ -31,6 +31,14 @@ const metaStyle = {
   gap: 1
 }
 
+const ownerStyle = {fontWeight: "medium"};
+
+const dateStyle = {color: "text.secondary"};
+
+const actionsIconStyle = {color: "text.secondary"};
+
+const contentStyle = {mb: .4};
+
 export default function CommentCard({comment}) {
   // Debug
   // console.log("Render CommentCard")
@@ -80,7 +88,7 @@ export default function CommentCard({comment}) {
   //
 
   return (
-    <div>
+    <>
       {/* Edit Modal */}
       {comment.id === selectedCommentID &&
       <EditCommentModal
@@ -103,10 +111,10 @@ export default function CommentCard({comment}) {
       <Card sx={cardStyle}>
         <Box sx={headerStyle}>
           <Box sx={metaStyle}>
-            <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
+            <Typography component="p" variant="body1" sx={ownerStyle}>
               {comment.owner.display_name}
             </Typography>
-            <Typography component="small" variant="body2" sx={{color: "text.secondary"}}>
+            <Typography component="small" variant="body2" sx={dateStyle}>
               {comment.created}
             </Typography>
           </Box>
@@ -117,19 +125,19 @@ export default function CommentCard({comment}) {
               handleOpenMenu(e)
               selectComment(comment.id)
               }}>
-              <MoreVert fontSize="small" sx={{color: "text.secondary"}}/>
+              <MoreVert fontSize="small" sx={actionsIconStyle}/>
             </IconButton>}
         </Box>
         <Box>
           <Typography
           variant="body1"
           component="p"
-          sx={{mb: .4}}
+          sx={contentStyle}
           >
             {content}
           </Typography>
         </Box>
       </Card>
-    </div>
+    </>
   )
 }
