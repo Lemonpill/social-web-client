@@ -7,7 +7,7 @@ import { API } from '../../API';
 import ModalSaveButton from '../buttons/ModalSaveButton';
 import ModalCancelButton from '../buttons/ModalCancelButton';
 
-const style = {
+const cardStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -23,6 +23,12 @@ const style = {
   borderColor: "divider",
   boxShadow: 0
 };
+
+const headerStyle = {display: "flex", alignItems: "center"}
+
+const metaStyle = {display: "flex", gap: 1, alignItems: "center"}
+
+const footerStyle = {display: "flex", gap: 2}
 
 export default function EditCommentModal({comment, currContent, setCurrContent}) {
 
@@ -99,12 +105,11 @@ export default function EditCommentModal({comment, currContent, setCurrContent})
           timeout: 500,
         }}
         disableScrollLock
-
       >
         <Fade in={showEditCommentModal}>
-          <Card sx={style}>
-            <Box sx={{display: "flex", alignItems: "center"}}>
-              <Box sx={{display: "flex", gap: 1, alignItems: "center"}}>
+          <Card sx={cardStyle}>
+            <Box sx={headerStyle}>
+              <Box sx={metaStyle}>
                 <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
                   {comment.owner.display_name}
                 </Typography>
@@ -126,7 +131,7 @@ export default function EditCommentModal({comment, currContent, setCurrContent})
                 autoFocus
               />
             </Box>
-            <Box sx={{display: "flex", gap: 2}}>
+            <Box sx={footerStyle}>
               <ModalSaveButton
                 text="Save"
                 onClick={onSave}

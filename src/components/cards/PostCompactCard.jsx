@@ -10,6 +10,28 @@ import { API } from '../../API';
 import { useAuthContext } from '../../context/useAuthContext';
 import { useNavigate } from 'react-router';
 
+const cardStyle = {
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  boxShadow: 0,
+  gap: 2,
+  p: 2,
+  border: "1px solid",
+  borderColor: "divider"
+}
+
+const headerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
+}
+
+const metaStyle = {
+  display: "flex",
+  flexDirection: "column"
+}
+
 export default function PostCompactCard({post}) {
   // Debug
   // console.log("Render PostCompactCard")
@@ -88,27 +110,9 @@ export default function PostCompactCard({post}) {
       />
 
       {/* Post card */}
-      <Card
-        sx={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          boxShadow: 0,
-          gap: 2,
-          p: 2,
-          border: "1px solid",
-          borderColor: "divider"
-        }}
-        >
-        <Box sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}>
-          <Box sx={{
-            display: "flex",
-            flexDirection: "column"
-          }}>
+      <Card sx={cardStyle}>
+        <Box sx={headerStyle}>
+          <Box sx={metaStyle}>
             <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
               {post.owner.display_name}
             </Typography>

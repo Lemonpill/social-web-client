@@ -2,6 +2,19 @@ import * as React from 'react';
 import {Menu, MenuItem} from '@mui/material';
 import {Edit, Delete, Visibility} from "@mui/icons-material";
 
+const menuStyle = {
+  border: "1px solid",
+  borderColor: "divider",
+  boxShadow: 0
+}
+
+const itemStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: 1,
+  p: 1.2,
+}
+
 export default function PostMenu({anchorEl, open, handleClose, actions, onView, onEdit, onDelete}) {
   return (
     <div>
@@ -17,11 +30,7 @@ export default function PostMenu({anchorEl, open, handleClose, actions, onView, 
           vertical: 'center',
           horizontal: 'right',
         }}
-        sx={{
-          border: "1px solid",
-          borderColor: "divider",
-          boxShadow: 0
-        }}
+        sx={menuStyle}
       >
         {actions.map(a => (
           <MenuItem
@@ -32,12 +41,7 @@ export default function PostMenu({anchorEl, open, handleClose, actions, onView, 
               a === "View" && onView()
               a === "Edit" && onEdit()
               a === "Delete" && onDelete()
-          }} sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              p: 1.2,
-            }}>
+          }} sx={itemStyle}>
             {/* Icon to match action */}
             {a === "View" && <Visibility fontSize="small"/>}
             {a === "Edit" && <Edit fontSize="small"/>}

@@ -9,6 +9,23 @@ import {
 import { useCommentsContext } from "../../context/useCommentsContext";
 import { API } from "../../API";
 
+const cardStyle = {
+  display:"flex",
+  alignItems: "center",
+  gap: 2,
+  py: 1,
+  px: 2,
+  border: "1px solid",
+  borderColor: "divider",
+  boxShadow: 0
+}
+
+const buttonStyle = {
+  fontWeight: 400,
+  color: "text.primary",
+  p: 0
+}
+
 export default function NewCommentForm({ postID }) {
   // Debug
   // console.log("Rendering NewCommentForm")
@@ -48,16 +65,7 @@ export default function NewCommentForm({ postID }) {
 
   return (
     <Card
-      sx={{
-        display:"flex",
-        alignItems: "center",
-        gap: 2,
-        py: 1,
-        px: 2,
-        border: "1px solid",
-        borderColor: "divider",
-        boxShadow: 0
-      }}
+      sx={cardStyle}
     >
       <TextField
         label="Share your thoughts here"
@@ -72,11 +80,7 @@ export default function NewCommentForm({ postID }) {
         onClick={handleSubmit}
         type="submit"
         variant="text"
-        sx={{
-          fontWeight: 400,
-          color: "text.primary",
-          p:0
-        }}
+        sx={buttonStyle}
       >
         Submit
       </Button>

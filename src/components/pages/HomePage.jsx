@@ -6,6 +6,15 @@ import { useModalContext } from '../../context/useModalContext';
 import React from 'react';
 import InfoBox from '../InfoBox';
 
+const containerStyle = {display: "flex", flexDirection: "column", gap: 1, mt: 1};
+
+const cardStyle = {
+  p: 2,
+  boxShadow: 0,
+  border: "1px solid",
+  borderColor: "divider"
+}
+
 const postsStatusMessage = {
   "loading": "Loading feed ...",
   "error": "Error loading feed"
@@ -26,14 +35,9 @@ export default function HomePage() {
   }, [openNewPostModal])
 
   return (
-    <Container maxWidth="sm" sx={{display: "flex", flexDirection: "column", gap: 1, mt: 1}}>
+    <Container maxWidth="sm" sx={containerStyle}>
       <NewPostModal onAddPost={addPost}/>
-      <Card sx={{
-        p: 2,
-        boxShadow: 0,
-        border: "1px solid",
-        borderColor: "divider"
-      }}>
+      <Card sx={cardStyle}>
         {/* Clicking text field opens new post modal */}
         <TextField
           fullWidth

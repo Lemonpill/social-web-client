@@ -7,7 +7,7 @@ import { API } from '../../API';
 import ModalSaveButton from "../buttons/ModalSaveButton";
 import ModalCancelButton from '../buttons/ModalCancelButton';
 
-const style = {
+const cardStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -23,6 +23,12 @@ const style = {
   gap: 3,
   p: 2
 };
+
+const headerStyle = {display: "flex", alignItems: "center"};
+
+const metaStyle = {display: "flex", flexDirection: "column"};
+
+const footerStyle = {display: "flex", gap: 2};
 
 const NewPostModal = ({onAddPost}) => {
     
@@ -89,9 +95,9 @@ const NewPostModal = ({onAddPost}) => {
         }}
       >
         <Fade in={showNewPostModal}>
-          <Card sx={style}>
-            <Box sx={{display: "flex", alignItems: "center"}}>
-              <Box sx={{display: "flex", flexDirection: "column"}}>
+          <Card sx={cardStyle}>
+            <Box sx={headerStyle}>
+              <Box sx={metaStyle}>
                 <Typography component="h1" variant="h6" sx={{fontWeight: "medium"}}>
                   Create a post
                 </Typography>
@@ -115,7 +121,7 @@ const NewPostModal = ({onAddPost}) => {
                 autoFocus
               />
             </Box>
-            <Box sx={{display: "flex", gap: 2}}>
+            <Box sx={footerStyle}>
               {/* Save button */}
               <ModalSaveButton
                 disabled={!content || loading}

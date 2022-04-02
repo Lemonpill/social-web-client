@@ -8,6 +8,10 @@ import { useCommentsContext } from '../../context/useCommentsContext';
 import EditPostModal from '../modals/EditPostModal';
 import InfoBox from "../InfoBox";
 
+const containerStyle = {display: "flex", flexDirection: "column", gap: 1, mt: 1};
+
+
+
 const postStatusMessage = {
   "loading": "Loading post ...",
   "error": "Error loading post"
@@ -36,7 +40,7 @@ export default function PostPage() {
   }, [post.content])
 
   return (
-    <Container maxWidth="sm" sx={{display: "flex", flexDirection: "column", gap: 1, mt: 1}}>
+    <Container maxWidth="sm" sx={containerStyle}>
       {postStatus === "ready" ? <>
         {/* Edit Modal */}
         <EditPostModal post={post} currContent={content} setCurrContent={setContent}/>

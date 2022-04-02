@@ -2,6 +2,19 @@ import * as React from 'react';
 import {Menu, MenuItem} from '@mui/material';
 import {Edit, Delete} from "@mui/icons-material";
 
+const menuStyle = {
+  border: "1px solid",
+  borderColor: "divider",
+  boxShadow: 0
+}
+
+const itemStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: 1,
+  p: 1.2
+}
+
 export default function CommentMenu({anchorEl, open, handleClose, actions, onEdit, onDelete}) {
   return (
     <div>
@@ -17,11 +30,7 @@ export default function CommentMenu({anchorEl, open, handleClose, actions, onEdi
           vertical: 'center',
           horizontal: 'right',
         }}
-        sx={{
-          border: "1px solid",
-          borderColor: "divider",
-          boxShadow: 0
-        }}
+        sx={menuStyle}
       >
         {/* Display actions except for "View" */}
         {actions.filter(a => a !== "View").map(a => (
@@ -31,12 +40,7 @@ export default function CommentMenu({anchorEl, open, handleClose, actions, onEdi
             // Handle actions
             a === "Edit" && onEdit()
             a === "Delete" && onDelete()
-          }} sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              p: 1.2
-            }}>
+          }} sx={itemStyle}>
             {/* Icon to match action */}
             {a === "Edit" && <Edit fontSize="small"/>}
             {a === "Delete" && <Delete fontSize="small"/>}

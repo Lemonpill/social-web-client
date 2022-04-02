@@ -9,6 +9,29 @@ import {useAuthContext} from "../../context/useAuthContext";
 import {API} from "../../API";
 import { useNavigate } from "react-router-dom";
 
+const cardStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  p: 4,
+  boxShadow: 0
+};
+
+const avatarStyle = { m: 1.2, p: 3.4, bgcolor: 'primary.main' };
+
+const titleStyle = {
+  fontWeight: 400,
+  opacity: .9
+};
+
+const buttonStyle = { mt: 3, mb: .5, py: 1.5 };
+
+const signupLinkStyle = {
+  textAlign: "center",
+  display: "block",
+  mt: 2
+};
+
 export default function LoginPage() {
 
   // DEBUG
@@ -76,22 +99,11 @@ export default function LoginPage() {
         maxWidth="xs"
         sx={{pt: 2}}
       >
-        <Card
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            p: 4,
-            boxShadow: 0
-          }}
-        >
-          <Avatar sx={{ m: 1.2, p: 3.4, bgcolor: 'primary.main' }}>
+        <Card sx={cardStyle}>
+          <Avatar sx={avatarStyle}>
             <AccountCircleOutlined fontSize="large" sx={{color: "#fff"}}/>
           </Avatar>
-          <Typography component="h1" variant="h5" sx={{
-            fontWeight: 400,
-            opacity: .9
-          }}>
+          <Typography component="h1" variant="h5" sx={titleStyle}>
             Log In
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -144,15 +156,11 @@ export default function LoginPage() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: .5, py: 1.5 }}
+              sx={buttonStyle}
             >
               Login
             </Button>
-            <Link href="/signup" variant="body2" sx={{
-              textAlign: "center",
-              display: "block",
-              mt: 2
-            }}>
+            <Link href="/signup" variant="body2" sx={signupLinkStyle}>
               Don't have an account? Signup here!
             </Link>
           </Box>

@@ -8,6 +8,29 @@ import { useModalContext } from '../../context/useModalContext';
 import { useAuthContext } from '../../context/useAuthContext';
 import {API} from "../../API";
 
+const cardStyle = {
+  position: "relative",
+  display: "flex",
+  overflow: "visible",
+  flexDirection: "column",
+  boxShadow: 0,
+  gap: 2,
+  p: 2,
+  border: "1px solid",
+  borderColor: "divider"
+}
+
+const headerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
+}
+
+const metaStyle = {
+  display: "flex",
+  flexDirection: "column"
+}
+
 export default function PostFullCard({post, content}) {
   // Debug
   // console.log("Render PostFullCard")
@@ -61,19 +84,7 @@ export default function PostFullCard({post, content}) {
 
   return (
     // Post
-    <Card
-      sx={{
-        position: "relative",
-        display: "flex",
-        overflow: "visible",
-        flexDirection: "column",
-        boxShadow: 0,
-        gap: 2,
-        p: 2,
-        border: "1px solid",
-        borderColor: "divider"
-      }}
-      >
+    <Card sx={cardStyle}>
       {/* Menu */}
       <PostMenu 
         anchorEl={menuAnchorEl}
@@ -84,15 +95,8 @@ export default function PostFullCard({post, content}) {
         onEdit={onPostEdit}
         onDelete={onPostDelete}
       />
-      <Box sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
-      }}>
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column"
-        }}>
+      <Box sx={headerStyle}>
+        <Box sx={metaStyle}>
           <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
             {post.owner.display_name}
           </Typography>

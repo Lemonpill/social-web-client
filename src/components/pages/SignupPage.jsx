@@ -9,6 +9,31 @@ import Copyright from '../Copyright';
 import {API} from '../../API';
 import { useNavigate } from 'react-router';
 
+const cardStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  p: 4,
+  boxShadow: 0
+};
+
+const avatarStyle = { m: 1.2, p: 3.4, bgcolor: 'primary.main' };
+
+const titleStyle = {
+  fontWeight: 400,
+  opacity: .9
+};
+
+const disclaimerStyle = {textAlign: "center", fontSize: "80%"};
+
+const loginLinkStyle = {
+  textAlign: "center",
+  display: "block",
+  mt: 2
+};
+
+const buttonStyle = { mt: 3, mb: .5, py: 1.5};
+
 export default function SignUpPage() {
 
   const navigate = useNavigate()
@@ -83,21 +108,12 @@ export default function SignUpPage() {
         sx={{pt: 2}}
       >
         <Card
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            p: 4,
-            boxShadow: 0
-          }}
+          sx={cardStyle}
         >
-          <Avatar sx={{ m: 1.2, p: 3.4, bgcolor: 'primary.main' }}>
+          <Avatar sx={avatarStyle}>
             <LockOutlinedIcon fontSize="large"/>
           </Avatar>
-          <Typography component="h1" variant="h5" sx={{
-            fontWeight: 400,
-            opacity: .9
-          }}>
+          <Typography component="h1" variant="h5" sx={titleStyle}>
             Sign up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -190,18 +206,14 @@ export default function SignUpPage() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: .5, py: 1.5}}
+              sx={buttonStyle}
             >
               Sign Up
             </Button>
-            <Typography variant="body2" sx={{textAlign: "center", fontSize: "80%"}}>
+            <Typography variant="body2" sx={disclaimerStyle}>
               By clicking Sign Up, you agree to <Link href="/terms">Terms of use</Link>
             </Typography>
-            <Link href="/login" variant="body2" sx={{
-              textAlign: "center",
-              display: "block",
-              mt: 2
-            }}>
+            <Link href="/login" variant="body2" sx={loginLinkStyle}>
               Already have an account? Login here!
             </Link>
           </Box>

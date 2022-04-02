@@ -4,6 +4,8 @@ import LoadMoreButton from "../buttons/LoadMoreButton";
 import { useFeedContext } from '../../context/useFeedContext';
 import InfoBox from '../InfoBox';
 
+const feedStyle = {display: "flex", flexDirection: "column", gap: 1};
+
 export default function FeedSection() {
   // Debug
   // console.log("Rendering FeedSection")
@@ -14,7 +16,7 @@ export default function FeedSection() {
     <Box component="section">
       {/* Display "No posts yet" if no posts are in state */}
       {!posts.length ? <InfoBox text="No posts yet"/> : 
-        <Box sx={{display: "flex", flexDirection: "column", gap: 1}}>
+        <Box sx={feedStyle}>
           {posts.map(p => (
             <PostCompactCard key={p.id} post={p}/>
           ))}

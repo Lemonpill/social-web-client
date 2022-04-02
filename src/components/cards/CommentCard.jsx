@@ -9,6 +9,28 @@ import axios from 'axios';
 import { API } from '../../API';
 import { useAuthContext } from '../../context/useAuthContext';
 
+const cardStyle = {
+  display: "flex",
+  flexDirection: "column",
+  boxShadow: 0,
+  gap: 2,
+  p: 2,
+  border: "1px solid",
+  borderColor: "divider"
+}
+
+const headerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
+}
+
+const metaStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: 1
+}
+
 export default function CommentCard({comment}) {
   // Debug
   // console.log("Render CommentCard")
@@ -78,27 +100,9 @@ export default function CommentCard({comment}) {
       />
 
       {/* Comment card*/}
-      <Card
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          boxShadow: 0,
-          gap: 2,
-          p: 2,
-          border: "1px solid",
-          borderColor: "divider"
-        }}
-        >
-        <Box sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}>
-          <Box sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1
-          }}>
+      <Card sx={cardStyle}>
+        <Box sx={headerStyle}>
+          <Box sx={metaStyle}>
             <Typography component="p" variant="body1" sx={{fontWeight: "medium"}}>
               {comment.owner.display_name}
             </Typography>

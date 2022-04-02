@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, CircularProgress } from '@mui/material';
 
-const style = {
+const screenStyle = {
   width: "100vw",
   height: "100vh",
   display: "flex",
@@ -14,7 +14,7 @@ export default function LoadingScreen() {
   // console.log("Rendering: LoadingScreen")
   
   return (
-    <Box sx={style}>
+    <Box sx={screenStyle}>
       <CircularProgress size="2em"/>
     </Box>
   )
