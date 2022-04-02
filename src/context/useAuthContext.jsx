@@ -67,8 +67,11 @@ export function AuthContextProvider(props) {
     // Reset user
     setUser()
     
-    // Clear localStorage
-    localStorage.clear()
+    // Clear auth related stuff from localstorage
+    localStorage.removeItem("bearerToken")
+    localStorage.removeItem("bearerTokenExp")
+    localStorage.removeItem("refreshToken")
+    localStorage.removeItem("refreshTokenExp")
   }, [setUser, setUserStatus])
   
   // userStatus listener
