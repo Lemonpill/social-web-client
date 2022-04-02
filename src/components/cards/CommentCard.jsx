@@ -1,6 +1,6 @@
 import CommentMenu from '../menus/CommentMenu';
 import MoreVert from "@mui/icons-material/MoreVert";
-import { Card, Typography, Box, IconButton } from '@mui/material';
+import { Card, Typography, Box, IconButton, Avatar } from '@mui/material';
 import React, { useCallback } from "react";
 import { useModalContext } from '../../context/useModalContext';
 import { useCommentsContext } from "../../context/useCommentsContext";
@@ -13,31 +13,31 @@ const cardStyle = {
   display: "flex",
   flexDirection: "column",
   boxShadow: 0,
-  gap: 2,
   p: 2,
   border: "1px solid",
   borderColor: "divider"
 }
 
-const headerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center"
-}
-
-const metaStyle = {
-  display: "flex",
-  alignItems: "center",
-  gap: 1
-}
-
-const ownerStyle = {fontWeight: "medium"};
-
-const dateStyle = {color: "text.secondary"};
-
 const actionsIconStyle = {color: "text.secondary"};
 
-const contentStyle = {mb: .4};
+const layoutStyle = {
+  display: "grid",
+  gridTemplateColumns: "max-content auto max-content",
+  gap: 2,
+  alignItems: "flex-start"
+}
+
+const avatarStyle = {
+  width: "1.5em",
+  height: "1.5em",
+  mt: .5
+};
+
+const menuButtonStyle = {p: 0};
+
+const ownerNameStyle = {fontSize: "60%"};
+
+const dateStyle = {textAlign: "right", fontSize: "80%", opacity: .4, mt: 1};
 
 export default function CommentCard({comment}) {
   // Debug
@@ -109,33 +109,31 @@ export default function CommentCard({comment}) {
 
       {/* Comment card*/}
       <Card sx={cardStyle}>
-        <Box sx={headerStyle}>
-          <Box sx={metaStyle}>
-            <Typography component="p" variant="body1" sx={ownerStyle}>
-              {comment.owner.display_name}
+        <Box sx={layoutStyle}>
+          <Avatar sx={{...avatarStyle, backgroundColor: comment.owner.color}}>
+            <Typography sx={ownerNameStyle}>
+              {comment.owner.display_name[0].toUpperCase()}
             </Typography>
-            <Typography component="small" variant="body2" sx={dateStyle}>
+          </Avatar>
+          <Box>
+            <Typography
+              variant="body1"
+              component="p"
+            >
+              {content}
+            </Typography>
+            <Typography variant="body2" sx={dateStyle}>
               {comment.created}
             </Typography>
           </Box>
-          
           {/* Do not display menu icon if no actions are available */}
           {comment.actions.filter(a => a !== "View").length > 0 &&
-            <IconButton onClick={e => {
-              handleOpenMenu(e)
-              selectComment(comment.id)
-              }}>
-              <MoreVert fontSize="small" sx={actionsIconStyle}/>
-            </IconButton>}
-        </Box>
-        <Box>
-          <Typography
-          variant="body1"
-          component="p"
-          sx={contentStyle}
-          >
-            {content}
-          </Typography>
+          <IconButton sx={menuButtonStyle} onClick={e => {
+            handleOpenMenu(e)
+            selectComment(comment.id)
+            }}>
+            <MoreVert fontSize="small" sx={actionsIconStyle}/>
+          </IconButton>}
         </Box>
       </Card>
     </>

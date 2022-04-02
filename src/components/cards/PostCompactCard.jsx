@@ -33,11 +33,11 @@ const metaStyle = {
   gap: 1
 }
 
+const metaBoxStyle = {display: "flex", flexDirection: "column", gap: 0};
+
 const ownerStyle = {fontWeight: "medium", lineHeight: "120%"};
 
 const dateStyle = {color: "text.secondary", lineHeight: "120%"};
-
-const metaBoxStyle = {display: "flex", flexDirection: "column", gap: 0};
 
 const actionsIconStyle = {color: "text.secondary"};
 
@@ -130,7 +130,7 @@ export default function PostCompactCard({post}) {
           <Box sx={metaStyle}>
             <Avatar sx={{backgroundColor: post.owner.color}}>
               <Typography>
-                {post.owner.display_name[0]}
+                {post.owner.display_name[0].toUpperCase()}
               </Typography>
             </Avatar>
             <Box sx={metaBoxStyle}>

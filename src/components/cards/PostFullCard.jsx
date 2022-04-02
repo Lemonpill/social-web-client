@@ -3,7 +3,7 @@ import React from 'react';
 import MoreVert from "@mui/icons-material/MoreVert";
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { Card, Typography, Box, IconButton } from '@mui/material';
+import { Card, Typography, Box, IconButton, Avatar } from '@mui/material';
 import { useModalContext } from '../../context/useModalContext';
 import { useAuthContext } from '../../context/useAuthContext';
 import {API} from "../../API";
@@ -28,12 +28,15 @@ const headerStyle = {
 
 const metaStyle = {
   display: "flex",
-  flexDirection: "column"
+  alignItems: "center",
+  gap: 1
 }
 
-const ownerStyle = {fontWeight: "medium"};
+const metaBoxStyle = {display: "flex", flexDirection: "column", gap: 0};
 
-const dateStyle = {color: "text.secondary"};
+const ownerStyle = {fontWeight: "medium", lineHeight: "120%"};
+
+const dateStyle = {color: "text.secondary", lineHeight: "120%"};
 
 const actionsIconStyle = {color: "text.secondary"};
 
@@ -105,12 +108,19 @@ export default function PostFullCard({post, content}) {
       />
       <Box sx={headerStyle}>
         <Box sx={metaStyle}>
-          <Typography component="p" variant="body1" sx={ownerStyle}>
-            {post.owner.display_name}
-          </Typography>
-          <Typography component="small" variant="body2" sx={dateStyle}>
-            {post.created}
-          </Typography>
+          <Avatar sx={{backgroundColor: post.owner.color}}>
+              <Typography>
+                {post.owner.display_name[0].toUpperCase()}
+              </Typography>
+            </Avatar>
+            <Box sx={metaBoxStyle}>
+              <Typography component="p" variant="body1" sx={ownerStyle}>
+                {post.owner.display_name}
+              </Typography>
+              <Typography component="small" variant="body2" sx={dateStyle}>
+                {post.created}
+              </Typography>
+            </Box>
         </Box>
         <IconButton onClick={handleOpenMenu}>
           <MoreVert fontSize="small" sx={actionsIconStyle}/>
