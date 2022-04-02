@@ -15,14 +15,26 @@ export const ColorModeContext = createContext({toggleColorMode: () => {}})
 
 function ToggleColorMode({children}) {
 
-  const [mode, setMode] = useState("dark")
-  const colorMode = useMemo(() => ({
-    toggleColorMode: () => {
-      setMode(prevMode => (prevMode === "light" ? "dark" : "light"))
-    }
-  }), [])
+  const [mode, setMode] = useState(
+    localStorage.getItem("colorMode") ? 
+    // set color mode from localstorage
+    localStorage.getItem("colorMode") : 
+    // if none, use "dark" as default
+    "dark"
+    )
+    
+    const colorMode = useMemo(() => ({
+      toggleColorMode: () => {
+        setMode(prevMode => (prevMode === "light" ? "dark" : "light"))
+      }
+    }), [])
+    
+    // Update local storage on color mode change
+    React.useEffect(() => {
+      localStorage.setItem("colorMode", mode)
+    }, [mode])
 
-  const theme = useMemo(() => createTheme({
+    const theme = useMemo(() => createTheme({
     palette: {
       mode,
       primary: {
