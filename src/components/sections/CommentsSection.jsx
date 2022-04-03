@@ -1,9 +1,10 @@
-import CommentCard from "../cards/CommentCard";
+// import CommentCard from "../cards/CommentCard";
 import { usePostContext } from "../../context/usePostContext";
 import { Box } from "@mui/material";
 import { useCommentsContext } from "../../context/useCommentsContext";
 import LoadMoreButton from "../buttons/LoadMoreButton";
 import InfoBox from "../InfoBox";
+import CommentCard from "../cards/CommentCard";
 
 const mainBoxStyle = {display: "flex", flexDirection: "column", gap: 1};
 

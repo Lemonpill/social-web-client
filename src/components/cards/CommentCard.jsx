@@ -9,22 +9,11 @@ import axios from 'axios';
 import { API } from '../../API';
 import { useAuthContext } from '../../context/useAuthContext';
 
-const cardStyle = {
-  display: "flex",
-  flexDirection: "column",
-  boxShadow: 0,
-  p: 2,
-  border: "1px solid",
-  borderColor: "divider"
-}
-
 const actionsIconStyle = {color: "text.secondary"};
 
 const layoutStyle = {
-  display: "grid",
-  gridTemplateColumns: "max-content auto max-content",
-  gap: 2,
-  alignItems: "flex-start"
+  display: "flex",
+  gap: 1
 }
 
 const avatarStyle = {
@@ -37,13 +26,13 @@ const menuButtonStyle = {p: 0};
 
 const ownerNameStyle = {fontSize: "60%"};
 
-const dateStyle = {textAlign: "right", fontSize: "80%", opacity: .4, mt: 1};
+const dateStyle = { fontSize: "80%", opacity: .4, mt: 1};
 
 export default function CommentCard({comment}) {
   // Debug
   // console.log("Render CommentCard")
 
-  const {bearerToken} = useAuthContext()
+  const {bearerToken, user} = useAuthContext()
   const {openEditCommentModal} = useModalContext()
   const {selectedCommentID, selectComment, onDeleteComment} = useCommentsContext()
 
@@ -108,13 +97,13 @@ export default function CommentCard({comment}) {
       />
 
       {/* Comment card*/}
-      <Card sx={cardStyle}>
-        <Box sx={layoutStyle}>
-          <Avatar sx={{...avatarStyle, backgroundColor: comment.owner.color}}>
-            <Typography sx={ownerNameStyle}>
-              {comment.owner.display_name[0].toUpperCase()}
-            </Typography>
-          </Avatar>
+      <Box sx={layoutStyle}>
+        <Avatar sx={{...avatarStyle, backgroundColor: comment.owner.color, order: comment.owner.id === user.id ? 1 : 2}}>
+          <Typography sx={ownerNameStyle}>
+            {comment.owner.display_name[0].toUpperCase()}
+          </Typography>
+        </Avatar>
+        <Card sx={{display: "grid", gridTemplateColumns: "auto max-content", alignItems: "flex-start", p: 2, order: comment.owner.id === user.id ? 2 : 1}}>
           <Box>
             <Typography
               variant="body1"
@@ -122,7 +111,7 @@ export default function CommentCard({comment}) {
             >
               {content}
             </Typography>
-            <Typography variant="body2" sx={dateStyle}>
+            <Typography variant="body2" sx={{...dateStyle, textAlign: comment.owner.id === user.id ? "left" : "right"}}>
               {comment.created}
             </Typography>
           </Box>
@@ -134,8 +123,9 @@ export default function CommentCard({comment}) {
             }}>
             <MoreVert fontSize="small" sx={actionsIconStyle}/>
           </IconButton>}
-        </Box>
-      </Card>
+        </Card>
+
+      </Box>
     </>
   )
 }
