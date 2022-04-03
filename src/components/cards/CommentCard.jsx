@@ -13,12 +13,12 @@ const actionsIconStyle = {color: "text.secondary"};
 
 const layoutStyle = {
   display: "flex",
-  gap: 1
+  gap: 1,
 }
 
 const avatarStyle = {
-  width: "1.6em",
-  height: "1.6em",
+  width: "1.2em",
+  height: "1.2em",
   mt: 1
 };
 
@@ -27,6 +27,7 @@ const menuButtonStyle = {p: 0};
 const ownerNameStyle = {fontSize: "60%"};
 
 const cardStyle = {
+  width: "100%",
   display: "grid",
   gridTemplateColumns: "auto max-content",
   alignItems: "flex-start",
@@ -104,7 +105,7 @@ export default function CommentCard({comment}) {
       />
 
       {/* Comment card*/}
-      <Box sx={layoutStyle}>
+      <Box sx={{...layoutStyle, justifyContent: comment.owner.id === user.id ? "start" : "end"}}>
         <Avatar sx={{
           ...avatarStyle,
           backgroundColor: comment.owner.color,

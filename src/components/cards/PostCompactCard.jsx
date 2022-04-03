@@ -128,7 +128,7 @@ export default function PostCompactCard({post}) {
       <Card sx={cardStyle}>
         <Box sx={headerStyle}>
           <Box sx={metaStyle}>
-            <Avatar sx={{backgroundColor: post.owner.color}}>
+            <Avatar sx={{backgroundColor: post.owner.color, border: "1px solid", borderColor: "divider"}}>
               <Typography>
                 {post.owner.display_name[0].toUpperCase()}
               </Typography>
