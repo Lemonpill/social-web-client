@@ -17,14 +17,21 @@ const layoutStyle = {
 }
 
 const avatarStyle = {
-  width: "1.5em",
-  height: "1.5em",
-  mt: .5
+  width: "1.6em",
+  height: "1.6em",
+  mt: 1
 };
 
 const menuButtonStyle = {p: 0};
 
 const ownerNameStyle = {fontSize: "60%"};
+
+const cardStyle = {
+  display: "grid",
+  gridTemplateColumns: "auto max-content",
+  alignItems: "flex-start",
+  p: 2
+}
 
 const dateStyle = { fontSize: "80%", opacity: .4, mt: 1};
 
@@ -98,12 +105,21 @@ export default function CommentCard({comment}) {
 
       {/* Comment card*/}
       <Box sx={layoutStyle}>
-        <Avatar sx={{...avatarStyle, backgroundColor: comment.owner.color, order: comment.owner.id === user.id ? 1 : 2}}>
+        <Avatar sx={{
+          ...avatarStyle,
+          backgroundColor: comment.owner.color,
+          // Display avatar on the left if current user is comment owner
+          order: comment.owner.id === user.id ? 1 : 2
+        }}>
           <Typography sx={ownerNameStyle}>
             {comment.owner.display_name[0].toUpperCase()}
           </Typography>
         </Avatar>
-        <Card sx={{display: "grid", gridTemplateColumns: "auto max-content", alignItems: "flex-start", p: 2, order: comment.owner.id === user.id ? 2 : 1}}>
+        <Card sx={{
+          ...cardStyle,
+          // Display card on the right if comment owner is current user
+          order: comment.owner.id === user.id ? 2 : 1
+        }}>
           <Box>
             <Typography
               variant="body1"
@@ -111,7 +127,11 @@ export default function CommentCard({comment}) {
             >
               {content}
             </Typography>
-            <Typography variant="body2" sx={{...dateStyle, textAlign: comment.owner.id === user.id ? "left" : "right"}}>
+            <Typography variant="body2" sx={{
+              ...dateStyle,
+              // Align date to left if comment owner is current user
+              textAlign: comment.owner.id === user.id ? "left" : "right"
+            }}>
               {comment.created}
             </Typography>
           </Box>
@@ -124,7 +144,6 @@ export default function CommentCard({comment}) {
             <MoreVert fontSize="small" sx={actionsIconStyle}/>
           </IconButton>}
         </Card>
-
       </Box>
     </>
   )
